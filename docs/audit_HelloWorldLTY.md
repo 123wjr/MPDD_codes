@@ -71,6 +71,35 @@ Stage A（3 个 sklearn 任务头重组，得 base `reference/0566211_submission
 
 ---
 
+## 证据复核与可靠性评级（2026-06-20 二次核验）
+
+下列每条 Track 2 不正当手段均**直接来自选手自己提交的源码与注释**（已于 2026-06-20
+在 `reprod_young/code_stage_b/` 逐行重新核对，行号与内容一字不差），不依赖本团队的
+复现结果或任何建模判断，因此**事实层面可靠性极高（自证型证据）**。
+
+| 结论 | 证据（选手本人文件） | 可靠性 |
+| ---- | -------------------- | ------ |
+| 往届(MPDD-2025)标签泄漏 | `LEAK = [1, 7, …, 110]` 硬编码于 **6 个** stage-B 脚本（`build_t2_ens_0601.py:44`、`build_t2_ens_round5_0601.py:39`、`build_t2_final_0601.py:31`、`build_t2_ens30_0530.py:44`、`build_t2_ens20c_0530.py:38`、`build_t2_ens30b_0530.py:36`），各脚本均加载 `mpdd_2025/.../personalized_train.json` 真值并据此给候选打分排序 | **极高（逐字自证）** |
+| 排行榜试探 | `build_t2_final_0601.py:4-5` 注释："CodaBench-confirmed facts now: ref=0.566, ens17=0.59, ens92=0.6233(BEST), ens95(id47→mild)=0.5836(FAIL ⇒ id47 is N)…"，由提交分数反推未出现的 4 个 ID `{5,15,22,47}`；`build_t2_ens_round5_0601.py:52` "22: …CodaBench-confirmed" | **极高（明示）** |
+| 手工硬调测试预测 | `build_t2_final_0601.py` 对 id47 的 PHQ 做一维扫描挑值；同文件 `:114` "binary & ternary are LEFT EXACTLY as the proven ens92 (0.6233)" | **极高** |
+| 选手自认 | `run_stage_b.sh:2-3` "Stage B: ensemble / leak-exploitation / leaderboard-probing chain that lifts the 0.566 base to the 0.6233 best"；README "the only transferable science is Stage A" | **极高** |
+
+### 仍未达到"官方核实"的部分（如实声明）
+1. **具体分数尚未在 Codabench 实测**：自称 ≈0.62/0.6233 来自选手注释中对排行榜的自述读数，
+   0.566211 为其冻结 base 产物；本环境无法提交，故 `leaderboard_scores.md` 的"真值分"列仍为空。
+   "差距 ≈0.05+"在方向上有力支撑，但尚非官方实测值。
+2. **本团队诚实 Stage-A 复现自身有局限**（见 `results/HelloWorldLTY/Track2_Young/REPRO_NOTES.md`）：
+   步态(G)与人格(P)沿用官方数组未重抽；诚实二分类退化为全正类。故"≈0.566"是善意估计而非竞赛级分数。
+3. **"建议取消资格"为判断性结论**：泄漏 + 试探的**事实**铁证如山，但是否构成取消资格取决于赛规
+   （本团队尚未通读赛规），属于在可靠事实之上的编辑性建议。
+
+### 一句话
+> Track 2 的**事实核心**——头部分数由"往届标签泄漏 + 排行榜试探 + 手工编辑"取得——**可靠**，
+> 由选手自己的源码证明；**具体分数差距与取消资格建议**为有据推断，尚待一次真实 Codabench 提交
+> 与赛规对照后才能正式定案。
+
+---
+
 ## 复现要点（详见 `repro/HelloWorldLTY/RUNBOOK.md`）
 - **只跑 Stage A**（从头训练），**禁用** `reference/`、`outputs/` 内任何冻结 zip 与 `reproduce_best.py`/`verify_*.sh`。
 - **Track 2 严禁**任何 `code_stage_b/*` 脚本与 `mpdd_2025/` 标签文件。
