@@ -1,0 +1,91 @@
+{
+  "experiment_name": "track2_young_tuned_avgp_mfcc_densenet_ternary_kappa_v1",
+  "timestamp": "2026-06-19-16.52.24",
+  "task": "ternary",
+  "track": "Track2",
+  "subtrack": "A-V-G-P",
+  "encoder_type": "bilstm_mean",
+  "audio_feature": "mfcc",
+  "video_feature": "densenet",
+  "regression_label": "",
+  "best_epoch": 66,
+  "selection_metric": "kappa",
+  "score_weights": {
+    "alpha": 0.3333333333333333,
+    "beta": 0.3333333333333333,
+    "gamma": 0.3333333333333333
+  },
+  "best_val_metrics": {
+    "acc": 0.6666666666666666,
+    "f1": 0.4230769230769231,
+    "kappa": 0.2894736842105262,
+    "ccc": -0.029107091771414195,
+    "rmse": 0.8981434593965287,
+    "mae": 0.7569593588511149,
+    "confusion_matrix": [
+      [
+        5,
+        0,
+        0
+      ],
+      [
+        2,
+        1,
+        0
+      ],
+      [
+        1,
+        0,
+        0
+      ]
+    ],
+    "selection_score": 0.2894736842105262,
+    "r2": -0.15680896733527216,
+    "cls_loss": 5.2199155248882665,
+    "reg_loss": 0.8066616621282365,
+    "scoretrack": 0.2278145051720117,
+    "loss": 6.026577124993007,
+    "only_modality": "all"
+  },
+  "checkpoint_path": "../../../../datasets/MPDD-AVG-2026/work/runs/Track2_Young/checkpoints/Track2/A-V-G-P/ternary/track2_young_tuned_avgp_mfcc_densenet_ternary_kappa_v1/best_model_2026-06-19-16.52.24.pth",
+  "history_path": "../../../../datasets/MPDD-AVG-2026/work/runs/Track2_Young/logs/Track2/A-V-G-P/ternary/track2_young_tuned_avgp_mfcc_densenet_ternary_kappa_v1/history_2026-06-19-16.52.24.csv",
+  "predictions_path": "",
+  "train_count": 79,
+  "val_count": 9,
+  "config": {
+    "config": "config.json",
+    "track": "Track2",
+    "task": "ternary",
+    "regression_label": "label2",
+    "subtrack": "A-V-G-P",
+    "encoder_type": "bilstm_mean",
+    "audio_feature": "mfcc",
+    "video_feature": "densenet",
+    "data_root": "../../../../datasets/MPDD-AVG-2026/work/MPDD-AVG2026-trainval/Young",
+    "split_csv": "../../../../datasets/MPDD-AVG-2026/work/MPDD-AVG2026-trainval/Young/split_labels_train.csv",
+    "personality_npy": "../../../../datasets/MPDD-AVG-2026/work/MPDD-AVG2026-trainval/Young/descriptions_embeddings_with_ids.npy",
+    "val_ratio": 0.1,
+    "seed": 42,
+    "epochs": 320,
+    "batch_size": 2,
+    "lr": 8e-05,
+    "weight_decay": 1e-05,
+    "target_t": 128,
+    "device": "cuda",
+    "hidden_dim": 128,
+    "dropout": 0.3,
+    "patience": 90,
+    "min_delta": 0.0001,
+    "num_workers": 4,
+    "checkpoints_dir": "../../../../datasets/MPDD-AVG-2026/work/runs/Track2_Young/checkpoints",
+    "logs_dir": "../../../../datasets/MPDD-AVG-2026/work/runs/Track2_Young/logs",
+    "experiment_name": "track2_young_tuned_avgp_mfcc_densenet_ternary_kappa_v1",
+    "selection_metric": "kappa",
+    "score_alpha": 0.3333333333333333,
+    "score_beta": 0.3333333333333333,
+    "score_gamma": 0.3333333333333333,
+    "cls_loss_weight": 3.0,
+    "reg_loss_weight": 0.1,
+    "weighted_sampler": true
+  }
+}

@@ -70,8 +70,10 @@ MPDD_codes/
 - [x] 三个非空仓库静态代码审查（见 `docs/audit_*.md`）
 - [x] 审查总结与判定（见 `docs/SUMMARY.md`）
 - [x] 各选手从头复现手册（见 `repro/<选手>/RUNBOOK.md`）
-- [ ] 本地从头复现（GPU 机器执行）
-- [ ] 分数核对与最终结论
+- [x] 本地从头复现 · buptlyx Track1 Elder + Track2 Young（产物见 `results/buptlyx/`）
+- [x] 本地从头复现 · HelloWorldLTY Track1 Elder + Track2 Young（诚实 Stage-A 复现，产物见 `results/HelloWorldLTY/`）
+- [x] 本地从头复现 · JerryYe748 Track1 Elder（无法从头复现，判定见 `results/JerryYe748/VERDICT.md`）
+- [ ] 分数核对（把各 `results/*/**/submission*.zip` 传 Codabench 取真值分）与最终结论
 
 ## 一句话结论（详见 `docs/SUMMARY.md`）
 
@@ -81,5 +83,7 @@ MPDD_codes/
   （从头约 0.56–0.57 vs 自称 0.5881）；无泄漏但成绩依赖冻结产物。
 - ⚠️ **JerryYe748 · Track1**：无特征抽取代码、依赖随包预抽特征+权重、用非官方特征
   → 仅凭其仓库无法从头复现。
-- ✅ **buptlyx**：干净、可从头复现（注意 Track2 视频测试特征为空对分数解释的影响）。
+- ✅ **buptlyx**：干净、可从头复现。**Track1 Elder + Track2 Young 均已在本地从头跑通并生成
+  `submission.zip`**（见 `results/buptlyx/`），等待传 Codabench 取分核对。Track2 Young 本次
+  从原始 `.avi` 自抽视频特征（全部非空），故不受"官方预抽视频特征为空"问题影响。
 - ⛔ **qwe-rty-uop**：空仓库，无可复现内容。
