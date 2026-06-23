@@ -1,49 +1,100 @@
 # 排行榜分数核对表
 
-在本地浏览器打开 Codabench 排行榜，把每位选手的**最终官方分数**填入下表，
-作为从头复现核对的"真值"。
+官方排行榜数据来源：`MPDD-AVG_2026_Leaderboard_Summary.docx`（组委会提供），
+Codabench 用户名 → 选手映射来自 `player_info.xlsx`。
 
-- Track 1 · Elder · AVG+P：<https://www.codabench.org/competitions/16077/>
-- Track 2 · Young · AVG+P：<https://www.codabench.org/competitions/16079/>
+- Track 1 · Elder · AVG+P (16077)：<https://www.codabench.org/competitions/16077/>
+- Track 2 · Young · AVG+P (16079)：<https://www.codabench.org/competitions/16079/>
 
-> 评分通常综合二分类 / 三分类的 Macro-F1、Accuracy、Kappa 与 PHQ-9 回归的
-> CCC/RMSE/MAE（以官方 evaluation 脚本为准）。
+> **评分指标**：Score 为综合分（Cls_F1 + Cls_CCC + Cls_Kappa 的综合），
+> Binary 部分评估二分类（ACC / MacroF1 / Kappa / CCC / RMSE / MAE），
+> Ternary 部分评估三分类（ACC / MacroF1 / Kappa / CCC / RMSE / MAE）。
 
-## Track 1 · Elder (16077)
+## Track 1 · Elder · A-V-G+P (16077)
 
-| 排名 | 选手 | 排行榜分数 | 从头复现分数 | 差距 | 结论 |
-| ---- | ---- | ---------- | ------------ | ---- | ---- |
-| 1 | | | | | |
-| 2 | | | | | |
-| 3 | | | | | |
-| 4 | | | | | |
-| 5 | | | | | |
+### Part A — Score / Classification / Binary
 
-## Track 2 · Young (16079)
+| Rank | Participant | Score | Cls_F1 | Cls_CCC | Cls_Kappa | Binary_ACC | Binary_MacroF1 | Binary_Kappa | Binary_CCC | Binary_RMSE | Binary_MAE |
+| ---- | ----------- | ----- | ------ | ------- | --------- | ---------- | -------------- | ------------ | ---------- | ----------- | ---------- |
+| 1 | jianshi-774314 | 0.9713 | 1.0000 | 0.9140 | 1.0000 | 1.0000 | 1.0000 | 1.0000 | 0.9354 | 0.3002 | 0.1520 |
+| 2 | mail_hias-774302 | 0.9556 | 1.0000 | 0.8668 | 1.0000 | 1.0000 | 1.0000 | 1.0000 | 0.8668 | 0.4328 | 0.3513 |
+| 3 | aipl_lab-774294 | 0.9337 | 0.9514 | 0.9432 | 0.9064 | 0.9565 | 0.9505 | 0.9013 | 0.9637 | 0.2376 | 0.0997 |
+| **4** | **zhongdq-774280** | **0.9213** | **0.9481** | **0.8623** | **0.9534** | **1.0000** | **1.0000** | **1.0000** | **0.8623** | **0.4507** | **0.3446** |
+| 5 | clouds-774257 | 0.9033 | 0.9514 | 0.8522 | 0.9064 | 0.9565 | 0.9505 | 0.9013 | 0.8522 | 0.4844 | 0.3827 |
+| 6 | chaoyi_yu-771033 | 0.8149 | 0.8966 | 0.7434 | 0.8046 | 0.9130 | 0.8973 | 0.7946 | 0.7434 | 0.5872 | 0.4167 |
+| 7 | lfyyxy-759077 | 0.7967 | 0.8616 | 0.7490 | 0.7795 | 0.9130 | 0.9042 | 0.8099 | 0.7405 | 0.6666 | 0.4371 |
+| 8 | jycha95-771694 | 0.6695 | 0.7655 | 0.6440 | 0.5989 | 0.8261 | 0.7946 | 0.5893 | 0.6440 | 0.6392 | 0.5327 |
+| **9** | **rnguziyyds-773029** | **0.5882** | **0.6859** | **0.5800** | **0.4986** | **0.8261** | **0.7444** | **0.5106** | **0.5800** | **0.7343** | **0.5310** |
+| ... | *(共 20 名)* | | | | | | | | | | |
 
-| 排名 | 选手 | 排行榜分数 | 从头复现分数 | 差距 | 结论 |
-| ---- | ---- | ---------- | ------------ | ---- | ---- |
-| 1 | | | | | |
-| 2 | | | | | |
-| 3 | | | | | |
-| 4 | | | | | |
-| 5 | | | | | |
+> **zhongdq = JerryYe748**（参见 `player_info.xlsx`）
+> **rnguziyyds = HelloWorldLTY**（参见 `player_info.xlsx`）
 
-## 已知线索（来自选手 README，待官方核对）
+### Part B — Ternary
 
-- HelloWorldLTY · Track1 Elder：README 自称提交分数 **0.5881**（来自冻结产物再生成，非从头训练）。
-- HelloWorldLTY · Track2 Young：README 自称 base **0.566**，最终 `submission_final_0601`
-  经"MPDD-2025 标签泄漏 + leaderboard probing"链条得到（详见审查报告）。
+| Rank | Participant | Ternary_ACC | Ternary_MacroF1 | Ternary_Kappa | Ternary_CCC | Ternary_RMSE | Ternary_MAE |
+| ---- | ----------- | ----------- | --------------- | ------------- | ----------- | ------------ | ----------- |
+| **4** | **zhongdq-774280** | **0.9565** | **0.8963** | **0.9069** | **0.8623** | **0.4507** | **0.3446** |
+| **9** | **rnguziyyds-773029** | **0.7826** | **0.6275** | **0.4866** | **0.5800** | **0.7343** | **0.5310** |
 
-## 已完成的从头复现产物（待传 Codabench 取真值分）
+---
+
+## Track 2 · Young · A-V-G+P (16079)
+
+### Part A — Score / Classification / Binary
+
+| Rank | Participant | Score | Cls_F1 | Cls_CCC | Cls_Kappa | Binary_ACC | Binary_MacroF1 | Binary_Kappa | Binary_CCC | Binary_RMSE | Binary_MAE |
+| ---- | ----------- | ----- | ------ | ------- | --------- | ---------- | -------------- | ------------ | ---------- | ----------- | ---------- |
+| 1 | klklkl-774300 | 0.9706 | 0.9823 | 0.9671 | 0.9625 | 1.0000 | 1.0000 | 1.0000 | 0.9671 | 0.2115 | 0.1408 |
+| 2 | oneone-774321 | 0.9660 | 0.9823 | 0.9532 | 0.9625 | 1.0000 | 1.0000 | 1.0000 | 0.9532 | 0.2617 | 0.1549 |
+| 3 | lfyyxy-774309 | 0.9649 | 1.0000 | 0.8947 | 1.0000 | 1.0000 | 1.0000 | 1.0000 | 0.8900 | 0.3334 | 0.2228 |
+| 4 | aipl_lab-774323 | 0.9042 | 0.9368 | 0.9042 | 0.8715 | 0.9091 | 0.9091 | 0.8182 | 0.8619 | 0.4214 | 0.1468 |
+| 5 | clouds-774255 | 0.9017 | 0.8981 | 0.8855 | 0.9214 | 1.0000 | 1.0000 | 1.0000 | 0.8855 | 0.3610 | 0.2771 |
+| 6 | ai4ai_bupt666-774184 | 0.8745 | 0.8768 | 0.8714 | 0.8751 | 0.9545 | 0.9545 | 0.9091 | 0.8714 | 0.3941 | 0.3100 |
+| **7** | **jerryye233-772605** | **0.8137** | **0.8779** | **0.7676** | **0.7957** | **0.9091** | **0.9083** | **0.8182** | **0.7676** | **0.4761** | **0.3753** |
+| 8 | zzl05-774182 | 0.7803 | 0.7972 | 0.8389 | 0.7048 | 0.8636 | 0.8634 | 0.7273 | 0.8389 | 0.4114 | 0.3169 |
+| 9 | buptnbb-763022 | 0.6838 | 0.7972 | 0.5494 | 0.7048 | 0.8636 | 0.8634 | 0.7273 | 0.5494 | 0.6831 | 0.5038 |
+| 10 | chaoyi_yu-768154 | 0.6838 | 0.7558 | 0.6626 | 0.6329 | 0.8636 | 0.8611 | 0.7273 | 0.6626 | 0.5643 | 0.4535 |
+| 11 | gzs-bupt211729-761576 | 0.6796 | 0.7972 | 0.5368 | 0.7048 | 0.8636 | 0.8634 | 0.7273 | 0.5368 | 0.7110 | 0.5016 |
+| **12** | **rnguziyyds-773039** | **0.6581** | **0.7926** | **0.5537** | **0.6279** | **0.8182** | **0.8167** | **0.6364** | **0.5537** | **0.7296** | **0.6141** |
+| ... | *(共 20 名)* | | | | | | | | | | |
+
+> **jerryye233 = JerryYe748**（参见 `player_info.xlsx`）⚠️ 此前审计仅覆盖 Track1，未覆盖 Track2！
+> **rnguziyyds = HelloWorldLTY**（参见 `player_info.xlsx`）
+
+### Part B — Ternary
+
+| Rank | Participant | Ternary_ACC | Ternary_MacroF1 | Ternary_Kappa | Ternary_CCC | Ternary_RMSE | Ternary_MAE |
+| ---- | ----------- | ----------- | --------------- | ------------- | ----------- | ------------ | ----------- |
+| **7** | **jerryye233-772605** | **0.8636** | **0.8474** | **0.7732** | **0.7676** | **0.4761** | **0.3753** |
+| **12** | **rnguziyyds-773039** | **0.7727** | **0.7686** | **0.6194** | **0.5537** | **0.7296** | **0.6141** |
+
+---
+
+## 分数核对（待从头复现）
+
+| 选手 | 赛道 | 官方排行榜分数 | 说明 |
+| ---- | ---- | -------------- | ---- |
+| HelloWorldLTY | Track1 Elder (16077) | **0.5882** (rank 9/20) | 与 README 自称 0.5881 一致；来自冻结产物再阈值化 |
+| HelloWorldLTY | Track2 Young (16079) | **0.6581** (rank 12/20) | ⚠️ 选手代码中自称 ~0.62/0.6233（排行榜试探读数），官方实际为 0.6581（综合分公式可能不同） |
+| JerryYe748 | Track1 Elder (16077) | **0.9213** (rank 4/20) | 作为 zhongdq 提交 |
+| JerryYe748 | Track2 Young (16079) | **0.8137** (rank 7/20) | ⚠️ 新发现：此前审计未覆盖 Track2！作为 jerryye233 提交 |
+| buptlyx | Track1 Elder (16077) | 未进入前 20 | `liyuxiang-764095` 仅在 Elder G+P (rank 18) 和 Elder A-V+P (rank 18) 出现 |
+| buptlyx | Track2 Young (16079) | 未进入前 20 | — |
+
+> **重要发现**：
+> 1. JerryYe748 同时在 Track1 (0.9213) 和 Track2 (0.8137) 都有提交，此前审计报告仅覆盖 Track1。
+>    需要补充审计 Track2 Young。
+> 2. HelloWorldLTY Track2 官方分数 0.6581，选手代码内部追踪的"0.62/0.6233"与
+>    官方 Score 不同（可能因综合分公式差异）。
+
+## 已完成的从头复现产物
 
 | 选手 | 赛道 | 产物 | 备注 |
 | ---- | ---- | ---- | ---- |
 | buptlyx | Track1 Elder (16077) | `results/buptlyx/Track1_Elder/submission.zip` | 干净从头复现；23 test id；binary 17×0/6×1，ternary 21×0/1×1/1×2 |
-| buptlyx | Track2 Young (16079) | `results/buptlyx/Track2_Young/submission.zip` | 干净从头复现；22 test id；binary 9×0/13×1，ternary 20×0/1×1/1×2；**自抽视频特征非空，不受官方空特征问题影响** |
-| HelloWorldLTY | Track1 Elder (16077) | `results/HelloWorldLTY/Track1_Elder/submission_honest_top_r1.zip` | 诚实从头复现（自抽 5 特征 + `phq_threshold`，**不复用冻结 class_dir**）；vs 选手冻结参考 binary/ternary 各翻转 8/23，PHQ \|Δ\| 均值 2.38；诚实三分类**从不命中重度(class2)**。自称 **0.5881** 来自复用冻结分类产物。 |
-| HelloWorldLTY | Track2 Young (16079) | `results/HelloWorldLTY/Track2_Young/submission_honest_top_r1.zip` | 诚实从头复现（**仅 Stage A**，5 自抽特征 + `phq_threshold`，**无 Stage B / 无 mpdd_2025 泄漏标签 / 无重组**）；vs 选手冻结参考 0.566211：binary 翻转 12/22、ternary 13/22，PHQ \|Δ\| 均值 3.16；诚实 binary 退化为全正类（备选 `_r2` 阈值 3.5 较均衡）。自称 **0.566211** 来自 Stage-B 重组等被排除的产物。 |
+| buptlyx | Track2 Young (16079) | `results/buptlyx/Track2_Young/submission.zip` | 干净从头复现；22 test id；binary 9×0/13×1，ternary 20×0/1×1/1×2；**自抽视频特征非空** |
+| HelloWorldLTY | Track1 Elder (16077) | `results/HelloWorldLTY/Track1_Elder/submission_honest_top_r1.zip` | 诚实从头复现（自抽 5 特征 + `phq_threshold`）；vs 选手冻结参考 binary/ternary 各翻转 8/23，PHQ \|Δ\| 均值 2.38 |
+| HelloWorldLTY | Track2 Young (16079) | `results/HelloWorldLTY/Track2_Young/submission_honest_top_r1.zip` | 诚实从头复现（仅 Stage A）；vs 选手冻结参考：binary 翻转 12/22、ternary 13/22，PHQ \|Δ\| 均值 3.16；诚实 binary 退化为全正类 |
 
-> 上述两个 `submission.zip` 均为从原始数据自抽特征 + 随机初始化训练 + 仅评测一次测试集生成，
-> 使用选手自己的代码。把它们分别上传到对应 Codabench 赛道后，将官方分数填入上方对照表的
-> "从头复现分数"列即可完成核对。
+> Codabench 在本环境无法访问，以上产物均在本地生成，官方分数为从组委会 docx 提取的排行榜数据。
